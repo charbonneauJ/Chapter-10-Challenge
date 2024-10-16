@@ -1,55 +1,58 @@
 const inquirer = require("inquirer");
-const fs = require("fs");
-const { Circle, Square, Triangle  } = require("./lib/shapes");
+const { logoData } = require("./lib/logocreator");
 
-// question prompts
+//Prompts/Questions
 const questions = [
   {
-    message: "Enter a 3 character message",
     type: "input",
-    name: "Message",
+    name: "chars",
+    message: "Please enter your message (1-3 characters):",
   },
   {
-    message: "Enter your choice of color for text",
     type: "input",
-    name: "textcolor",
+    name: "textColor",
+    message: "Please enter your desired text color (can be hexadecimal):",
   },
   {
-    message: "Pick a shape!",
     type: "list",
-    choices: ["circle", "square", "triangle"],
     name: "shape",
+    message: "Please choose a shape: ",
+    choices: ["Circle", "Triangle", "Square"],
   },
   {
-    message: "Enter your choice of color for shape",
     type: "input",
-    name: "shapecolor",
+    name: "backgroundColor",
+    message: "Please pick a background color (can be hexadecimal):",
   },
 ];
 
+// Function to handle the logo creation
+const logo = async () => {
+  try {
+    const answers = await inquirer.prompt(questions);
+    validateInput(answers);
+  } catch (error) {
+    console.error("There was an error:", error);
+  }
+};
 
-// Making a function to generate SVG file
-function generateSVG(shape, text, textcolor, shapecolor) {
-    let SVGimage = "";
-    const circle = new Circle(150, 100, 100, shapecolor, textcolor, text);
-    SVGimage = circle.render();
-} else if (shape === "square") {
-    const square = new Square(50, 0, 200, 200, shapecolor, textcolor, text);
-    SVGimage = square.render();
-} else if (shape === "triangle") {
-    const triangle = new Triangle(150, 0, 275, 200, 25, 200, shapecolor, textcolor, text);
-    SVGimage = triangle.render();
-}
-  
-fs.writeFile("logo.svg", SVGimage, (err) => {
-    if (err) throw err;
-    console.log("Generate logo.svg");
-    }
+// Validate input from the user
+const validateInput = (answers) => {
+  const charLength = answers.chars.length;
+
+  if (charLength > 0 && charLength <= 3) {
+    logoData(answers);
+  } else {
+    console.log(
+      "Logo must be 3 characters or less. Please try again with a valid input."
     );
+  }
+};
 
+// Call the logo function
+logo();
 
-// function to generate SVG file
-inquirer.prompt(questions).then((answers) => {
-  const { message, textcolor, shape, shapecolor } = answers;
-  generateSVG(shape, message, textcolor, shapecolor);
-});
+// Export
+module.exports = {
+  validateInput,
+};

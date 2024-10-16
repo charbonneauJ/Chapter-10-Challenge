@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="no"?>
+        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+        "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+        <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+          <style> text {font-family: Arial, sans-serif;} </style>
+          <polygon points="150, 0 275, 200 25, 200" fill="green" /><text x="150" y="120" font-size="72" text-anchor="middle" fill="red">
+                          <tspan font-weight="bold">asd</tspan>
+                        </text>
+        </svg>

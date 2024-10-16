@@ -1,0 +1,1 @@
+{"name":"svg-logo-maker","version":"1.0.0","description":"Takes user input to generate a logo.","main":"index.js","scripts":{"start":"node index.js","test":"jest"},"keywords":[],"author":"","license":"MIT","dependencies":{"@inquirer/prompts":"^7.0.0","inquirer":"^8.0.0"},"devDependencies":{"jest":"^29.7.0"}}
